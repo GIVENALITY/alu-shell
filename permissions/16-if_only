@@ -1,3 +1,2 @@
 #!/bin/bash
 current_owner=$(stat -c %U hello); [ "$current_owner" = "guillaume" ] && chown vincent hello
-
