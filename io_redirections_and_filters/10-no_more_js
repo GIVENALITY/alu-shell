@@ -1,2 +1,2 @@
 #!/bin/bash
-ls 10-no_more_js
+echo "10-no_more_js"
