@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -lt | grep '^-' | head -n 12 | awk '{print $9}'
+ls -lt | grep '^-' | head -n 12 | tr -s ' ' | cut -d ' ' -f9
