@@ -1,2 +1,2 @@
 #!/bin/bash
-nl -ba | sed 'n;d' | cut -f2-
+cat -n | grep '^[0-9]*[02468] ' | cut -f 2
