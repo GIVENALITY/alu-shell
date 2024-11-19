@@ -1,0 +1,2 @@
+#!/bin/bash
+nl -ba | sed 'n;d' | cut -f2-
