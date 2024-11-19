@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
+echo "(Ôo)'"
+=======
 echo "\"(Ôo)'"
+>>>>>>> 0-hello_world
