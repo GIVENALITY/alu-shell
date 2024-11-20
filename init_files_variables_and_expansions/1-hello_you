@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "hello ${CUSTOM_USER:-root}"
+echo "hello ${MYUSER:-$(whoami)}"
