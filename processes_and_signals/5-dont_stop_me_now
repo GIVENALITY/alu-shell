@@ -2,8 +2,11 @@
 # This script stops the '4-to_infinity_and_beyond'
 pid=$(pgrep -f "4-to_infinity_and_beyond")
 if [ -n "$pid" ]; then
-kill "$pid"
+    kill "$pid"
+    if [ $? -q 0 ]; then
 echo "Process 4-to_infinity_and_beyond has been terminated."
 else
 echo "Process 4-to_infinity_and_beyond is not running."
-fi
+    fi
+    echo "Process 4_to_infinity_and_beyond is not running."
+    fi
