@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 # This script sends a SIGTERM signal to the '7-highlander' process.
-pkill -f "7-highlander"
+trap 'echo "I am invincible!!!"' SIGTERM
+while true
+do
+    echo "To infinity and beyond"
+    sleep 2
+    done

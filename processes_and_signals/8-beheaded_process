@@ -2,9 +2,4 @@
 # This script forcefully kills the '7-highlander' process.
 #Find the PID of the '7-highlander' process and kill it
 pid=$(pgrep -f "7-highlander")
-if [ -n "$pid" ]; then
-kill -9 "$pid"
-echo "7-highlander has been killed."
-else
-echo "7-highlander is not running."
-fi
+kill "$pid"
