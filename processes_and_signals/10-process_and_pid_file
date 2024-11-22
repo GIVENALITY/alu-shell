@@ -7,7 +7,7 @@ cleanup() {
     echo "PID file deleted."
     exit 0
 }
-trap 'echo "I have the kill command"; cleanup' SIGTERM
+trap 'echo "I hate the kill command"; cleanup' SIGTERM
 trap cleanup SIGQUIT
 trap 'echo "Y U no love me?!"' SIGINT
 while true; do
