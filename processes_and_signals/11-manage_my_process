@@ -6,33 +6,44 @@ SCRIPT_PATH="./manage_my_process"
 case "$1" in
 start)
 if [ -f "$PID_FILE" ]; then
-echo "manage_my_process is already running."
-else
+    echo "manage_my_process is already running."
+    exit 1
+fi
+
 nohup bash "$SCRIPT_PATH" > /dev/null 2>&1 &
 echo $! > "$PID_FILE"
 echo "manage_my_process started"
-fi
 ;;
+
 stop)
 if [ -f "$PID_FILE" ]; then
-kill "$(cat "$PID_FILE")" 2>/dev/null
+    echo "manage_my_process is not running."
+    exit 1
+    fi
 rm -f "$PID_FILE"
 echo "manage_my_process stopped"
 else
 echo "manage_my_process is not running."
 fi
-;;
-restart)
-if [ -f "$PID_FILE" ]; then
+
 kill "$(cat "$PID_FILE")" 2>/dev/null
 rm -f "$PID_FILE"
-fi
-nohup bash "$SCRIPT_PATH" > /dev/null 2>&1 &
-echo $! > "$PID_FILE"
-echo "manage_my_process restarted"
+echo "manage_my_process stopped"
 ;;
+
+restart)
+    if [ -f "$PID_FILE" ]; then
+	kill "$(cat "$PID_FILE")" 2>/dev/null
+	rm -f "$PID_FILE"
+    fi
+
+    nohup bash "$SCRIPT_PATH" > /dev/null 2>&1 &
+    echo $! > "$PID_FILE"
+    echo "manage_my_process restarted"
+    ;;
+
 *)
-echo "Usage: $0 {start|stop|restart}"
-exit 1
-;;
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+    ;;
 esac
