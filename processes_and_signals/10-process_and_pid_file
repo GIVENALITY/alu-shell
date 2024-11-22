@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 # This script create a PID file, displays messages indefinitely
-echo $$ > /var/run/myscript.pid
-
-trap 'echo "I hate the kill command"; cleanup_and_exit' SIGTERM
+PID_FILE="/var/run/myscript.pid"
+echo $$ > "$PID_FILE"
+cleanup() {
+    rm -f "$PID_FILE"
+    echo "PID file deleted."
+    exit 0
+}
+trap cleanup SIGTERM SIGQUIT
 trap 'echo "Y U no love me?!"' SIGINT
-trap 'rm /var/run/myscript.pid && exit' SIGQUIT SIGTERM
-
-white true; do
-echo "To infinity and beyond"
-sleep 2
-done
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+    done
