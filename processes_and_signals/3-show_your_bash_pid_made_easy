@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # This script lists the PID and process name of processes whose name contains 'bash'.
-for pid in /proc/[0-9]*; do
-command= $(basename "$(readlink -f "$pid/exe" 2>/dev/null)" 2>/dev/null)
-if [[ $command == *bash* ]]; then
-echo "$(basename "$pid") $command"
-fi
-done
+while read -r line; do
+    pid=$(echo "$line" | awk '{print $1}')
+    command=$(echo "$line" | awk '{$1=""; print $0}' | xargs)
+    if [[ "$command" == *"bash"* ]]; then
+	echo "$pid $command"
+    fi
+    done < <(cat /proc/*/stat 2>/dev/null | grep -v "swapper")
+    
