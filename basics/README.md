@@ -1,1 +1,1 @@
-Read me
+This project contains basic shell scripts.
